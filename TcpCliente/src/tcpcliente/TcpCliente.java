@@ -74,17 +74,16 @@ public class TcpCliente {
             return;
         }
 
-        System.out.println("boa noite133a");
-
         //Aguardando Resposta
         try {
             resposta = (RespostaServico) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
             System.out.println(e.getMessage());
+            // Isso ajudará a identificar exatamente onde o erro ocorre
             return;
         }
-        
-        System.out.println("oi");
+
         //Fechar o ponto de transpote
         try {
             socket.close();
@@ -96,10 +95,10 @@ public class TcpCliente {
         //Apresentar resposta
         if (resposta instanceof RespostaServico) {
             if (solicitacao.getCodigo() == DATA) {
-                System.out.println("DATA " + ((RespostaServico) resposta).getDia());
+                System.out.print("DATA " + ((RespostaServico) resposta).getDia());
                 System.out.println("/" + (((RespostaServico) resposta).getMes() + 1));
             } else if (solicitacao.getCodigo() == HORA) {
-                System.out.println("HORA " + ((RespostaServico) resposta).getHora());
+                System.out.print("HORA " + ((RespostaServico) resposta).getHora());
                 System.out.println(":" + ((RespostaServico) resposta).getMinuto());
             }
 
