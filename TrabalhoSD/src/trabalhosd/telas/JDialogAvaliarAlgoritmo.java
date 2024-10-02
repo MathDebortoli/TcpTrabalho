@@ -12,12 +12,12 @@ import javax.swing.JList;
  *
  * @author umestudantecristao
  */
-public class JDialogInserirDados extends javax.swing.JDialog {
+public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialogInserirDados
      */
-    public JDialogInserirDados(java.awt.Frame parent, boolean modal) {
+    public JDialogAvaliarAlgoritmo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -31,6 +31,7 @@ public class JDialogInserirDados extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupRespostaAlgoritmo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListSelecionados = new javax.swing.JList<>();
@@ -38,12 +39,15 @@ public class JDialogInserirDados extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListSintomas = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBoxDiagnostico = new javax.swing.JComboBox<>();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jRadioButtonCorreto = new javax.swing.JRadioButton();
+        jRadioButtonErrado = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Treinar algoritmo");
         setResizable(false);
 
         jListSelecionados.setFont(new java.awt.Font("Fira Mono", 0, 12)); // NOI18N
@@ -74,12 +78,6 @@ public class JDialogInserirDados extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
         jLabel2.setText("------------------SELECIONE OS SINTOMAS------------------");
 
-        jLabel3.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
-        jLabel3.setText("------------------SELECIONE O DIAGNÓSTICO------------------");
-
-        jComboBoxDiagnostico.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 14)); // NOI18N
-        jComboBoxDiagnostico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gripe", "Gravidez", "Virose", "Infecção intestinal", "Infecção de ouvido", "Apendicite", "Covid-19", "Labirintite", "Pressão baixa", "Pressão alta", "Estresse" }));
-
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +91,18 @@ public class JDialogInserirDados extends javax.swing.JDialog {
                 jButtonCancelarActionPerformed(evt);
             }
         });
+
+        jLabel4.setFont(new java.awt.Font("Fira Sans Condensed", 0, 14)); // NOI18N
+        jLabel4.setText("Resposta do algoritmo:");
+
+        jTextField1.setEditable(false);
+        jTextField1.setFocusable(false);
+
+        buttonGroupRespostaAlgoritmo.add(jRadioButtonCorreto);
+        jRadioButtonCorreto.setText("Está correto");
+
+        buttonGroupRespostaAlgoritmo.add(jRadioButtonErrado);
+        jRadioButtonErrado.setText("Está errado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,14 +118,21 @@ public class JDialogInserirDados extends javax.swing.JDialog {
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel1))
-                            .addComponent(jComboBoxDiagnostico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(24, 24, 24))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jRadioButtonCorreto)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jRadioButtonErrado))
+                                    .addComponent(jTextField1))))
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,10 +146,14 @@ public class JDialogInserirDados extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jComboBoxDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonCorreto)
+                    .addComponent(jRadioButtonErrado))
+                .addGap(82, 82, 82)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEnviar)
                     .addComponent(jButtonCancelar))
@@ -191,18 +212,26 @@ public class JDialogInserirDados extends javax.swing.JDialog {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[2];
+        Object[] resposta = new Object[3];
         
         for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
             listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
         }
         
-        String diagnostico = new String(jComboBoxDiagnostico.getSelectedItem().toString());
+        Boolean respostaAlgoritmo = false;
         
-        resposta[0] = listaSintomas;
-        resposta[1] = diagnostico;
+        if(jRadioButtonCorreto.isSelected()){
+            respostaAlgoritmo = true;
+        }
         
-        System.out.println(resposta[0].toString() + " " + resposta[1].toString());
+        resposta[0] = "a";
+        resposta[1] = listaSintomas;
+        resposta[2] = respostaAlgoritmo;
+        
+        System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
+                           "Sintomas: " + resposta[1] + "\n" +
+                           "'O algoritmo está correto?': " + resposta[2] + "\n"
+                          );
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
@@ -223,20 +252,23 @@ public class JDialogInserirDados extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogInserirDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogInserirDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogInserirDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogInserirDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogInserirDados dialog = new JDialogInserirDados(new javax.swing.JFrame(), true);
+                JDialogAvaliarAlgoritmo dialog = new JDialogAvaliarAlgoritmo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -249,16 +281,19 @@ public class JDialogInserirDados extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupRespostaAlgoritmo;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
-    private javax.swing.JComboBox<String> jComboBoxDiagnostico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jListSelecionados;
     private javax.swing.JList<String> jListSintomas;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButtonCorreto;
+    private javax.swing.JRadioButton jRadioButtonErrado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

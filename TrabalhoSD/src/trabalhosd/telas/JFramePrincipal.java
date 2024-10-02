@@ -32,7 +32,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonTreinarAlgoritmo = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonAvaliarAlgoritmo = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -47,6 +47,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de diagnósticos médicos");
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -71,11 +72,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jButton3.setText("Avaliar algoritmo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAvaliarAlgoritmo.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
+        jButtonAvaliarAlgoritmo.setText("Avaliar algoritmo");
+        jButtonAvaliarAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonAvaliarAlgoritmoActionPerformed(evt);
             }
         });
 
@@ -99,7 +100,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAvaliarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTreinarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -117,7 +118,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addGap(85, 85, 85)
                 .addComponent(jButtonTreinarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAvaliarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,16 +221,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonAvaliarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvaliarAlgoritmoActionPerformed
+        JDialogAvaliarAlgoritmo tela = new JDialogAvaliarAlgoritmo(this, true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
-        JDialogInserirDados tela = new JDialogInserirDados(this, true);
+        JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
 
@@ -271,7 +273,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAvaliarAlgoritmo;
     private javax.swing.JButton jButtonTreinarAlgoritmo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
