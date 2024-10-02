@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package trabalhosd;
+package trabalhosd.telas;
 
 /**
  *
@@ -81,7 +81,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jProgressBar1.setForeground(new java.awt.Color(51, 255, 51));
         jProgressBar1.setValue(70);
-        jProgressBar1.setString("70%");
         jProgressBar1.setStringPainted(true);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
