@@ -117,7 +117,7 @@
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jButtonAvaliarAlgoritmo" min="-2" pref="229" max="-2" attributes="0"/>
-                                  <Component id="jButton2" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <Component id="jButtonGerarDiagnostico" min="-2" pref="229" max="-2" attributes="0"/>
                                   <Component id="jButtonTreinarAlgoritmo" min="-2" pref="229" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -143,7 +143,7 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButtonAvaliarAlgoritmo" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="jButtonGerarDiagnostico" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTreinarAlgoritmoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jButtonGerarDiagnostico">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Fira Sans Condensed Book" size="18" style="0"/>
@@ -184,7 +184,7 @@
                 <Property name="text" type="java.lang.String" value="Gerar diagn&#xf3;stico"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerarDiagnosticoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAvaliarAlgoritmo">

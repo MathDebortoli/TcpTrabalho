@@ -31,7 +31,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonTreinarAlgoritmo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonGerarDiagnostico = new javax.swing.JButton();
         jButtonAvaliarAlgoritmo = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
@@ -64,11 +64,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jButton2.setText("Gerar diagnóstico");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerarDiagnostico.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
+        jButtonGerarDiagnostico.setText("Gerar diagnóstico");
+        jButtonGerarDiagnostico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonGerarDiagnosticoActionPerformed(evt);
             }
         });
 
@@ -101,7 +101,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonAvaliarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGerarDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTreinarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -120,7 +120,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jButtonAvaliarAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonGerarDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -226,9 +226,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonGerarDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarDiagnosticoActionPerformed
+        JDialogGerarDiagnostico tela = new JDialogGerarDiagnostico(this, true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButtonGerarDiagnosticoActionPerformed
 
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
         JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
@@ -272,8 +273,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAvaliarAlgoritmo;
+    private javax.swing.JButton jButtonGerarDiagnostico;
     private javax.swing.JButton jButtonTreinarAlgoritmo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

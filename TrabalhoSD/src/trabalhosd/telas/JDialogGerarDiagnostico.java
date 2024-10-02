@@ -12,12 +12,12 @@ import javax.swing.JList;
  *
  * @author umestudantecristao
  */
-public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
+public class JDialogGerarDiagnostico extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialogInserirDados
      */
-    public JDialogAvaliarAlgoritmo(java.awt.Frame parent, boolean modal) {
+    public JDialogGerarDiagnostico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -41,11 +41,6 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jRadioButtonCorreto = new javax.swing.JRadioButton();
-        jRadioButtonErrado = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Treinar algoritmo");
@@ -93,52 +88,24 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Fira Sans Condensed", 0, 14)); // NOI18N
-        jLabel4.setText("Resposta do algoritmo:");
-
-        jTextField1.setEditable(false);
-        jTextField1.setFocusable(false);
-
-        buttonGroupRespostaAlgoritmo.add(jRadioButtonCorreto);
-        jRadioButtonCorreto.setText("Está correto");
-
-        buttonGroupRespostaAlgoritmo.add(jRadioButtonErrado);
-        jRadioButtonErrado.setText("Está errado");
-
-        jButton1.setText("Resposta");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEnviar)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButtonCorreto)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jRadioButtonErrado))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(27, 27, 27))))
+                        .addComponent(jButtonEnviar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))))
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,20 +118,11 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonCorreto)
-                    .addComponent(jRadioButtonErrado))
-                .addGap(82, 82, 82)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEnviar)
                     .addComponent(jButtonCancelar))
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -219,27 +177,17 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[4];
+        Object[] resposta = new Object[2];
         
         for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
             listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
         }
         
-        int respostaAlgoritmo = -1;
-        
-        if(jRadioButtonCorreto.isSelected()){
-            respostaAlgoritmo = 1;
-        }
-        
-        resposta[0] = 1;
+        resposta[0] = 2;
         resposta[1] = listaSintomas;
-        resposta[2] = "Gripe";
-        resposta[3] = respostaAlgoritmo;
         
         System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
-                           "Sintomas: " + resposta[1] + "\n" +
-                           "Diagnóstico: " + resposta[2] + "\n" +
-                           "'O algoritmo está correto?': " + resposta[3] + "\n"
+                           "Sintomas: " + resposta[1] + "\n"
                           );
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
@@ -261,14 +209,18 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogGerarDiagnostico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogGerarDiagnostico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogGerarDiagnostico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogAvaliarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogGerarDiagnostico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -277,7 +229,7 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogAvaliarAlgoritmo dialog = new JDialogAvaliarAlgoritmo(new javax.swing.JFrame(), true);
+                JDialogGerarDiagnostico dialog = new JDialogGerarDiagnostico(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -291,19 +243,14 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupRespostaAlgoritmo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jListSelecionados;
     private javax.swing.JList<String> jListSintomas;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButtonCorreto;
-    private javax.swing.JRadioButton jRadioButtonErrado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
