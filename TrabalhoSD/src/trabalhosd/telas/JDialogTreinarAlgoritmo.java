@@ -200,7 +200,7 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
         
         String diagnostico = new String(jComboBoxDiagnostico.getSelectedItem().toString());
         
-        resposta[0] = "t";
+        resposta[0] = 0;
         resposta[1] = listaSintomas;
         resposta[2] = diagnostico;
         

@@ -212,25 +212,27 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[3];
+        Object[] resposta = new Object[4];
         
         for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
             listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
         }
         
-        Boolean respostaAlgoritmo = false;
+        int respostaAlgoritmo = -1;
         
         if(jRadioButtonCorreto.isSelected()){
-            respostaAlgoritmo = true;
+            respostaAlgoritmo = 1;
         }
         
-        resposta[0] = "a";
+        resposta[0] = 1;
         resposta[1] = listaSintomas;
-        resposta[2] = respostaAlgoritmo;
+        resposta[2] = "Gripe";
+        resposta[3] = respostaAlgoritmo;
         
         System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
                            "Sintomas: " + resposta[1] + "\n" +
-                           "'O algoritmo está correto?': " + resposta[2] + "\n"
+                           "Diagnóstico: " + resposta[2] + "\n" +
+                           "'O algoritmo está correto?': " + resposta[3] + "\n"
                           );
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
