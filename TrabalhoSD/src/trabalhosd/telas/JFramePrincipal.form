@@ -117,7 +117,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jButton3" min="-2" pref="229" max="-2" attributes="0"/>
                                   <Component id="jButton2" min="-2" pref="229" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <Component id="jButtonTreinarAlgoritmo" min="-2" pref="229" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -138,7 +138,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="jButtonTreinarAlgoritmo" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -164,7 +164,7 @@
                 <Property name="text" type="java.lang.String" value="SISTEMA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jButtonTreinarAlgoritmo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Fira Sans Condensed Book" size="18" style="0"/>
@@ -172,7 +172,7 @@
                 <Property name="text" type="java.lang.String" value="Treinar algoritmo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTreinarAlgoritmoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">

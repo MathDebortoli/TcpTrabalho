@@ -4,6 +4,10 @@
  */
 package trabalhosd.telas;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /**
  *
  * @author umestudantecristao
@@ -27,21 +31,180 @@ public class JDialogInserirDados extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListSelecionados = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListSintomas = new javax.swing.JList<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBoxDiagnostico = new javax.swing.JComboBox<>();
+        jButtonEnviar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jListSelecionados.setFont(new java.awt.Font("Fira Mono", 0, 12)); // NOI18N
+        jListSelecionados.setFocusable(false);
+        jListSelecionados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListSelecionadosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListSelecionados);
+
+        jLabel1.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
+        jLabel1.setText("------------------SINTOMAS APRESENTADOS------------------");
+
+        jListSintomas.setFont(new java.awt.Font("Fira Mono Medium", 0, 14)); // NOI18N
+        jListSintomas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Febre", "Dor de cabeça", "Falta de ar", "Náusea", "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", "Falta de apetite", "Diarréia" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jListSintomas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListSintomasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jListSintomas);
+
+        jLabel2.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
+        jLabel2.setText("------------------SELECIONE OS SINTOMAS------------------");
+
+        jLabel3.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
+        jLabel3.setText("------------------SELECIONE O DIAGNÓSTICO------------------");
+
+        jComboBoxDiagnostico.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 14)); // NOI18N
+        jComboBoxDiagnostico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gripe", "Gravidez", "Virose", "Infecção intestinal", "Infecção de ouvido", "Apendicite", "Covid-19", "Labirintite", "Pressão baixa", "Pressão alta", "Estresse" }));
+
+        jButtonEnviar.setText("Enviar");
+        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnviarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEnviar)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1))
+                            .addComponent(jComboBoxDiagnostico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEnviar)
+                    .addComponent(jButtonCancelar))
+                .addGap(15, 15, 15))
         );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void adicionarEremoverLista(int index, JList<String> jlistEntrega, JList<String> jlistRecebe){
+        DefaultListModel<String> modelEntrega = new DefaultListModel<String>();
+        DefaultListModel<String> modelRecebe = new DefaultListModel<String>();
+
+        String item = jlistEntrega.getModel().getElementAt(index);
+
+        for (int i = 0; i < jlistEntrega.getModel().getSize(); i++) {
+            if (jlistEntrega.getModel().getElementAt(i) != item) {
+                modelEntrega.addElement(jListSintomas.getModel().getElementAt(i));
+            }
+        }
+
+        jlistEntrega.setModel(modelEntrega);
+
+        for (int i = 0; i < jlistRecebe.getModel().getSize(); i++) {
+            modelRecebe.addElement(jlistRecebe.getModel().getElementAt(i));
+        }
+
+        modelRecebe.addElement(item);
+        jlistRecebe.setModel(modelRecebe);
+    }
+    
+    private void jListSintomasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSintomasMouseClicked
+        if (evt.getClickCount() == 2) {
+            int index = jListSintomas.locationToIndex(evt.getPoint());
+            if (index != -1) {
+                adicionarEremoverLista(index, jListSintomas, jListSelecionados);
+            }
+        }
+    }//GEN-LAST:event_jListSintomasMouseClicked
+
+    private void jListSelecionadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSelecionadosMouseClicked
+         if (evt.getClickCount() == 2) {
+            int index = jListSelecionados.locationToIndex(evt.getPoint());
+            if (index != -1) {
+                adicionarEremoverLista(index, jListSelecionados, jListSintomas);
+            }
+        
+        }
+    }//GEN-LAST:event_jListSelecionadosMouseClicked
+
+    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
+        ArrayList<String> listaSintomas = new ArrayList<String>();
+        Object[] resposta = new Object[2];
+        
+        for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
+            listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
+        }
+        
+        String diagnostico = new String(jComboBoxDiagnostico.getSelectedItem().toString());
+        
+        resposta[0] = listaSintomas;
+        resposta[1] = diagnostico;
+        
+        System.out.println(resposta[0].toString() + " " + resposta[1].toString());
+        this.dispose();
+    }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +249,16 @@ public class JDialogInserirDados extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEnviar;
+    private javax.swing.JComboBox<String> jComboBoxDiagnostico;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList<String> jListSelecionados;
+    private javax.swing.JList<String> jListSintomas;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
