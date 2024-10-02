@@ -7,6 +7,7 @@ package trabalhosd.telas;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -189,6 +190,7 @@ public class JDialogGerarDiagnostico extends javax.swing.JDialog {
         System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
                            "Sintomas: " + resposta[1] + "\n"
                           );
+        
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 

@@ -15,6 +15,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
      */
     public JFramePrincipal() {
         initComponents();
+        jToggleButtonDiagnostico.setSelected(true);
     }
 
     /**
@@ -36,9 +37,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButtonAvaliacao = new javax.swing.JToggleButton();
+        jToggleButtonDiagnostico = new javax.swing.JToggleButton();
+        jToggleButtonTreino = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -133,17 +134,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("SAÍDAS");
 
-        buttonGroup1.add(jToggleButton1);
-        jToggleButton1.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButton1.setText("Avaliações");
+        buttonGroup1.add(jToggleButtonAvaliacao);
+        jToggleButtonAvaliacao.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
+        jToggleButtonAvaliacao.setText("Avaliações");
 
-        buttonGroup1.add(jToggleButton4);
-        jToggleButton4.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButton4.setText("Diagnósticos");
+        buttonGroup1.add(jToggleButtonDiagnostico);
+        jToggleButtonDiagnostico.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
+        jToggleButtonDiagnostico.setText("Diagnósticos");
 
-        buttonGroup1.add(jToggleButton5);
-        jToggleButton5.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButton5.setText("Testes");
+        buttonGroup1.add(jToggleButtonTreino);
+        jToggleButtonTreino.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
+        jToggleButtonTreino.setText("Treinos");
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel3.setLayout(new java.awt.BorderLayout());
@@ -178,11 +179,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jToggleButtonTreino, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButtonAvaliacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jToggleButtonDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +203,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButtonTreino, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButtonDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
@@ -223,16 +224,25 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonAvaliarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvaliarAlgoritmoActionPerformed
         JDialogAvaliarAlgoritmo tela = new JDialogAvaliarAlgoritmo(this, true);
+        
+        jToggleButtonAvaliacao.setSelected(true);
+        
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed
 
     private void jButtonGerarDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarDiagnosticoActionPerformed
         JDialogGerarDiagnostico tela = new JDialogGerarDiagnostico(this, true);
+        
+        jToggleButtonDiagnostico.setSelected(true);
+        
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonGerarDiagnosticoActionPerformed
 
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
         JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
+        
+        jToggleButtonTreino.setSelected(true);
+        
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
 
@@ -288,8 +298,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButtonAvaliacao;
+    private javax.swing.JToggleButton jToggleButtonDiagnostico;
+    private javax.swing.JToggleButton jToggleButtonTreino;
     // End of variables declaration//GEN-END:variables
 }
