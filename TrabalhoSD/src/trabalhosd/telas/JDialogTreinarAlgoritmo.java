@@ -6,7 +6,6 @@ package trabalhosd.telas;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 
 /**
  *
@@ -14,11 +13,14 @@ import javax.swing.JList;
  */
 public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDialogInserirDados
-     */
+    DefaultListModel<String> modelRecebe = null;
+    ArrayList<Integer> listaSintomas = null;
+
     public JDialogTreinarAlgoritmo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        modelRecebe = new DefaultListModel();
+        listaSintomas = new ArrayList(11);
+        preencherLista();
         initComponents();
     }
 
@@ -35,13 +37,13 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListSelecionados = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListSintomas = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxDiagnostico = new javax.swing.JComboBox<>();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Treinar algoritmo");
@@ -49,28 +51,10 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
 
         jListSelecionados.setFont(new java.awt.Font("Fira Mono", 0, 12)); // NOI18N
         jListSelecionados.setFocusable(false);
-        jListSelecionados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListSelecionadosMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jListSelecionados);
 
         jLabel1.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
         jLabel1.setText("------------------SINTOMAS APRESENTADOS------------------");
-
-        jListSintomas.setFont(new java.awt.Font("Fira Mono Medium", 0, 14)); // NOI18N
-        jListSintomas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Febre", "Dor de cabeça", "Falta de ar", "Náusea", "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", "Falta de apetite", "Diarréia" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jListSintomas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListSintomasMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jListSintomas);
 
         jLabel2.setFont(new java.awt.Font("Fira Sans Condensed", 0, 18)); // NOI18N
         jLabel2.setText("------------------SELECIONE OS SINTOMAS------------------");
@@ -79,8 +63,10 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
         jLabel3.setText("------------------SELECIONE O DIAGNÓSTICO------------------");
 
         jComboBoxDiagnostico.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 14)); // NOI18N
-        jComboBoxDiagnostico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gripe", "Gravidez", "Virose", "Infecção intestinal", "Infecção de ouvido", "Apendicite", "Covid-19", "Labirintite", "Pressão baixa", "Pressão alta", "Estresse" }));
+        jComboBoxDiagnostico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gripe", "Gravidez", "Virose", "Infecção intestinal", "Infecção de ouvido" }));
 
+        jButtonEnviar.setBackground(new java.awt.Color(51, 255, 51));
+        jButtonEnviar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,56 +74,82 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
             }
         });
 
-        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setBackground(new java.awt.Color(255, 0, 0));
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonCancelar.setText("Limpar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 102));
+        jButton1.setFont(new java.awt.Font("Liberation Sans", 3, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("+");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Febre", "Dor de cabeça", "Falta de ar", "Náusea", "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", "Falta de apetite", "Diarréia" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(126, 126, 126)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEnviar)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addComponent(jComboBoxDiagnostico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(24, 24, 24))))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3)
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jComboBoxDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEnviar)
-                    .addComponent(jButtonCancelar))
-                .addGap(15, 15, 15))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonEnviar))
+                .addGap(20, 20, 20))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -146,125 +158,59 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        this.dispose();
+        modelRecebe.clear();
+        jListSelecionados.setModel(modelRecebe);
+        esvaziarLista();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void adicionarEremoverLista(int index, JList<String> jlistEntrega, JList<String> jlistRecebe){
-        DefaultListModel<String> modelEntrega = new DefaultListModel<String>();
-        DefaultListModel<String> modelRecebe = new DefaultListModel<String>();
-
-        String item = jlistEntrega.getModel().getElementAt(index);
-
-        for (int i = 0; i < jlistEntrega.getModel().getSize(); i++) {
-            if (jlistEntrega.getModel().getElementAt(i) != item) {
-                modelEntrega.addElement(jListSintomas.getModel().getElementAt(i));
-            }
+    private void esvaziarLista() {
+        for (int i = 0; i < 11; i++) {
+            listaSintomas.set(i, 0);
         }
+    }
 
-        jlistEntrega.setModel(modelEntrega);
-
-        for (int i = 0; i < jlistRecebe.getModel().getSize(); i++) {
-            modelRecebe.addElement(jlistRecebe.getModel().getElementAt(i));
+    private void preencherLista() {
+        for (int i = 0; i < 11; i++) {
+            listaSintomas.add(i, 0);
         }
-
-        modelRecebe.addElement(item);
-        jlistRecebe.setModel(modelRecebe);
     }
     
-    private void jListSintomasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSintomasMouseClicked
-        if (evt.getClickCount() == 2) {
-            int index = jListSintomas.locationToIndex(evt.getPoint());
-            if (index != -1) {
-                adicionarEremoverLista(index, jListSintomas, jListSelecionados);
-            }
-        }
-    }//GEN-LAST:event_jListSintomasMouseClicked
-
-    private void jListSelecionadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSelecionadosMouseClicked
-         if (evt.getClickCount() == 2) {
-            int index = jListSelecionados.locationToIndex(evt.getPoint());
-            if (index != -1) {
-                adicionarEremoverLista(index, jListSelecionados, jListSintomas);
-            }
-        
-        }
-    }//GEN-LAST:event_jListSelecionadosMouseClicked
+    public ArrayList<Integer> retornarLista(){
+        return listaSintomas;
+    }
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[3];
-        
-        for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
-            listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
-        }
-        
-        String diagnostico = new String(jComboBoxDiagnostico.getSelectedItem().toString());
-        
-        resposta[0] = 0;
-        resposta[1] = listaSintomas;
-        resposta[2] = diagnostico;
-        
-        System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
-                           "Sintomas: " + resposta[1] + "\n" +
-                           "Diagnóstico: " + resposta[2] + "\n"
-                          );
+       
+        //Setamos qual doenca eh na ultima posicao.
+        listaSintomas.set(10, jComboBoxDiagnostico.getSelectedIndex());
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Adicionar no Combo Sintomas
+        jComboBox1.getSelectedItem();
+        String sintoma = jComboBox1.getSelectedItem().toString();
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogTreinarAlgoritmo dialog = new JDialogTreinarAlgoritmo(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+        modelRecebe.addElement(sintoma);
+        jListSelecionados.setModel(modelRecebe);
+
+        //Passamos o index do sintoma e setamos como 1.
+        listaSintomas.set(jComboBox1.getSelectedIndex(), 1);
+
+        System.out.println(listaSintomas);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxDiagnostico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jListSelecionados;
-    private javax.swing.JList<String> jListSintomas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

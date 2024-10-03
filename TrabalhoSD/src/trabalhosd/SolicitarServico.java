@@ -5,6 +5,7 @@
 package trabalhosd;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 public class SolicitarServico implements Serializable {
     private int codigo;
+    private ArrayList<Integer> listaSintomas = null;
 
     public int getCodigo() {
         return codigo;
@@ -20,6 +22,16 @@ public class SolicitarServico implements Serializable {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public ArrayList<Integer> getListaSintomas() {
+        return listaSintomas;
+    }
+
+    public void setListaSintomas(ArrayList<Integer> listaSintomas) {
+        this.listaSintomas = listaSintomas;
+    }
+    
+    
     
    
 }

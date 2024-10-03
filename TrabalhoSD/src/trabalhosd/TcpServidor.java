@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -41,52 +42,60 @@ public class TcpServidor extends Thread {
 
     @Override
     public void run() {
-        
+
         //Permanece prestando servico
-            try {
-                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                objectInputStream = new ObjectInputStream(socket.getInputStream());
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
-
-            //Aguardando a recepçao da solicitacao
-            try {
-                solicitacao = (SolicitarServico) objectInputStream.readObject();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
-                return;
-            }
-
-            resposta = new RespostaServico();
-
-            //Identificar e privendicar o serviço solicitado.
-            data = new Date();
-            calendario.setTime(data);
-
-            if (solicitacao.getCodigo() == DATA) {
-                ((RespostaServico) resposta).setDia(calendario.get(Calendar.DATE));
-                ((RespostaServico) resposta).setMes(calendario.get(Calendar.MONTH));
-            }
-
-            if (solicitacao.getCodigo() == HORA) {
-                ((RespostaServico) resposta).setHora(calendario.get(Calendar.HOUR));
-                ((RespostaServico) resposta).setMinuto(calendario.get(Calendar.MINUTE));
-            }
-
-            if (solicitacao.getCodigo() != DATA && solicitacao.getCodigo() != HORA) {
-                resposta = new ServicoNaoImplementado();
-                ((ServicoNaoImplementado) resposta).setMensagem("Servico Nao Implementado!");
-            }
-
-            //Enviar o objeto com a resposta
-            try {
-                objectOutputStream.writeObject(resposta);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
+        try {
+            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
         }
+
+        //Aguardando a recepçao da solicitacao
+        try {
+            solicitacao = (SolicitarServico) objectInputStream.readObject();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
+            return;
+        }
+
+        resposta = new RespostaServico();
+
+        ArrayList listaSintomas = solicitacao.getListaSintomas();
+        Discriminador gripe = new Discriminador();
+        gripe.setEntrada(listaSintomas);
+        
+        gripe.preencherRam();
+        
+        gripe.imprimirRams();
+
+        //Identificar e providendicar o serviço solicitado.
+        data = new Date();
+        calendario.setTime(data);
+
+        if (solicitacao.getCodigo() == DATA) {
+            ((RespostaServico) resposta).setDia(calendario.get(Calendar.DATE));
+            ((RespostaServico) resposta).setMes(calendario.get(Calendar.MONTH));
+        }
+
+        if (solicitacao.getCodigo() == HORA) {
+            ((RespostaServico) resposta).setHora(calendario.get(Calendar.HOUR));
+            ((RespostaServico) resposta).setMinuto(calendario.get(Calendar.MINUTE));
+        }
+
+        if (solicitacao.getCodigo() != DATA && solicitacao.getCodigo() != HORA) {
+            resposta = new ServicoNaoImplementado();
+            ((ServicoNaoImplementado) resposta).setMensagem("Servico Nao Implementado!");
+        }
+
+        //Enviar o objeto com a resposta
+        try {
+            objectOutputStream.writeObject(resposta);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+    }
 }

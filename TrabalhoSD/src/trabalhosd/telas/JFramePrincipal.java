@@ -4,15 +4,16 @@
  */
 package trabalhosd.telas;
 
+import java.util.ArrayList;
+import trabalhosd.TcpCliente;
+
 /**
  *
  * @author umestudantecristao
  */
 public class JFramePrincipal extends javax.swing.JFrame {
+    ArrayList<Integer> listaSintomas = null;
 
-    /**
-     * Creates new form JFramePrincipal
-     */
     public JFramePrincipal() {
         initComponents();
         jToggleButtonDiagnostico.setSelected(true);
@@ -224,17 +225,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonAvaliarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvaliarAlgoritmoActionPerformed
         JDialogAvaliarAlgoritmo tela = new JDialogAvaliarAlgoritmo(this, true);
-        
         jToggleButtonAvaliacao.setSelected(true);
-        
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed
 
     private void jButtonGerarDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarDiagnosticoActionPerformed
         JDialogGerarDiagnostico tela = new JDialogGerarDiagnostico(this, true);
-        
         jToggleButtonDiagnostico.setSelected(true);
-        
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonGerarDiagnosticoActionPerformed
 
@@ -242,14 +239,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
         
         jToggleButtonTreino.setSelected(true);
-        
         tela.setVisible(true);
+        listaSintomas = tela.retornarLista();
+        enviarLista();
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public ArrayList<Integer> getListaSintomas() {
+        return listaSintomas;
+    }
+   
+    private void enviarLista(){
+        TcpCliente cliente = new TcpCliente(listaSintomas);
+        cliente.enviar();
+    }
+    
+     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -263,23 +267,24 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogTreinarAlgoritmo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run(){
                 new JFramePrincipal().setVisible(true);
             }
         });
-    }
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -17,18 +19,23 @@ import java.net.UnknownHostException;
  */
 public class TcpCliente {
 
+    ArrayList<Integer> listaSintomas;
     private static final int DATA = 1;
     private static final int HORA = 2;
     private static final int PORTA_SERVICO = 2000;
+    
+    public TcpCliente(ArrayList listaSintomas){
+        this.listaSintomas = listaSintomas;
+    }
 
-    public static void main(String[] args) {
+    public void enviar() {
         String nomeServidor = "matheus-lenovo";
         int operacaoSolicitada = HORA;
         Socket socket = null;
         InetAddress enderecoServidor = null;
         SolicitarServico solicitacao;
         Object resposta;
-
+               
         ObjectOutputStream objectOutputStream;
         ObjectInputStream objectInputStream;
 
@@ -40,6 +47,7 @@ public class TcpCliente {
 
         //Criar solicitacao de servico
         solicitacao = new SolicitarServico();
+        solicitacao.setListaSintomas(listaSintomas);
 
         //Especificar o servio solicitado
         solicitacao.setCodigo(operacaoSolicitada);
@@ -66,7 +74,7 @@ public class TcpCliente {
             System.out.println(e.getMessage());
             return;
         }
-
+        
         try {
             objectOutputStream.writeObject(solicitacao);
         } catch (IOException ex) {
