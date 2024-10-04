@@ -28,6 +28,13 @@ public class TcpServidor extends Thread {
     ServerSocket serverSocket = null;
     Socket socket = null;
 
+    //Discriminadores para as doencas
+    Discriminador gripe;
+    Discriminador gravidez;
+    Discriminador virose;
+    Discriminador infeccaoOuvido;
+    Discriminador inffecaoIntestino;
+
     SolicitarServico solicitacao;
     Object resposta;
 
@@ -37,7 +44,11 @@ public class TcpServidor extends Thread {
 
     public TcpServidor(Socket socket) {
         this.socket = socket;
-        calendario = new GregorianCalendar();
+        this.gripe = new Discriminador();
+        this.virose = new Discriminador();
+        this.gravidez = new Discriminador();
+        this.infeccaoOuvido = new Discriminador();
+        this.inffecaoIntestino = new Discriminador();
     }
 
     @Override
@@ -60,42 +71,52 @@ public class TcpServidor extends Thread {
             e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
             return;
         }
-
+        
         resposta = new RespostaServico();
 
-        ArrayList listaSintomas = solicitacao.getListaSintomas();
-        Discriminador gripe = new Discriminador();
-        gripe.setEntrada(listaSintomas);
+        ArrayList<Integer> listaSintomas = solicitacao.getListaSintomas();
         
-        gripe.preencherRam();
-        
-        gripe.imprimirRams();
-
-        //Identificar e providendicar o serviço solicitado.
-        data = new Date();
-        calendario.setTime(data);
-
-        if (solicitacao.getCodigo() == DATA) {
-            ((RespostaServico) resposta).setDia(calendario.get(Calendar.DATE));
-            ((RespostaServico) resposta).setMes(calendario.get(Calendar.MONTH));
+        // Identifica a Doenca de acordo com o index do combobox.
+        if (null != listaSintomas.get(10)){
+            switch (listaSintomas.get(10)) {
+                case 0 -> {
+                    gripe.setEntrada(listaSintomas);
+                    gripe.preencherRam();
+                    gripe.imprimirRams();
+                }
+                case 1 -> {
+                    gravidez.setEntrada(listaSintomas);
+                    gravidez.preencherRam();
+                    gravidez.imprimirRams();
+                }
+                case 2 -> {
+                    virose.setEntrada(listaSintomas);
+                    virose.preencherRam();
+                    virose.imprimirRams();
+                }
+                case 3 -> {
+                    inffecaoIntestino.setEntrada(listaSintomas);
+                    inffecaoIntestino.preencherRam();
+                    inffecaoIntestino.imprimirRams();
+                }
+                case 4 -> {
+                    infeccaoOuvido.setEntrada(listaSintomas);
+                    infeccaoOuvido.preencherRam();
+                    infeccaoOuvido.imprimirRams();
+                }
+                default -> {
+                    System.out.println("Erro");
+                }
+            }
         }
-
-        if (solicitacao.getCodigo() == HORA) {
-            ((RespostaServico) resposta).setHora(calendario.get(Calendar.HOUR));
-            ((RespostaServico) resposta).setMinuto(calendario.get(Calendar.MINUTE));
-        }
-
-        if (solicitacao.getCodigo() != DATA && solicitacao.getCodigo() != HORA) {
-            resposta = new ServicoNaoImplementado();
-            ((ServicoNaoImplementado) resposta).setMensagem("Servico Nao Implementado!");
-        }
+        System.out.println("");
+        ((RespostaServico) resposta).setCodigo(1);
 
         //Enviar o objeto com a resposta
         try {
             objectOutputStream.writeObject(resposta);
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            return;
         }
     }
 }

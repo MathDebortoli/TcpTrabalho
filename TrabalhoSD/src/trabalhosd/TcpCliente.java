@@ -12,19 +12,19 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author matheus
  */
 public class TcpCliente {
 
+    private int mensagem;
     ArrayList<Integer> listaSintomas;
     private static final int DATA = 1;
     private static final int HORA = 2;
     private static final int PORTA_SERVICO = 2000;
-    
-    public TcpCliente(ArrayList listaSintomas){
+
+    public TcpCliente(ArrayList listaSintomas) {
         this.listaSintomas = listaSintomas;
     }
 
@@ -35,22 +35,16 @@ public class TcpCliente {
         InetAddress enderecoServidor = null;
         SolicitarServico solicitacao;
         Object resposta;
-               
+
         ObjectOutputStream objectOutputStream;
         ObjectInputStream objectInputStream;
-
-        //Validar Operacao;
-        if (operacaoSolicitada != DATA && operacaoSolicitada != HORA) {
-            System.out.println("Serviço Nao Implementado!");
-            return;
-        }
-
+        
         //Criar solicitacao de servico
         solicitacao = new SolicitarServico();
         solicitacao.setListaSintomas(listaSintomas);
+        
+        System.out.println("rodolfo");
 
-        //Especificar o servio solicitado
-        solicitacao.setCodigo(operacaoSolicitada);
 
         try {
             enderecoServidor = InetAddress.getByName(nomeServidor);
@@ -74,7 +68,7 @@ public class TcpCliente {
             System.out.println(e.getMessage());
             return;
         }
-        
+
         try {
             objectOutputStream.writeObject(solicitacao);
         } catch (IOException ex) {
@@ -100,19 +94,27 @@ public class TcpCliente {
             return;
         }
 
-        //Apresentar resposta
-        if (resposta instanceof RespostaServico) {
-            if (solicitacao.getCodigo() == DATA) {
-                System.out.print("DATA " + ((RespostaServico) resposta).getDia());
-                System.out.println("/" + (((RespostaServico) resposta).getMes() + 1));
-            } else if (solicitacao.getCodigo() == HORA) {
-                System.out.print("HORA " + ((RespostaServico) resposta).getHora());
-                System.out.println(":" + ((RespostaServico) resposta).getMinuto());
-            }
+        mensagem = ((RespostaServico) resposta).getCodigo();
 
-        } else if (resposta instanceof ServicoNaoImplementado) {
-            System.out.println("Serviço Nao Implementado");
-        }
+//        //Apresentar resposta
+//        if (resposta instanceof RespostaServico) {
+//            if (solicitacao.getCodigo() == DATA) {
+//                System.out.print("DATA " + ((RespostaServico) resposta).getDia());
+//                System.out.println("/" + (((RespostaServico) resposta).getMes() + 1));
+//            } else if (solicitacao.getCodigo() == HORA) {
+//                System.out.print("HORA " + ((RespostaServico) resposta).getHora());
+//                System.out.println(":" + ((RespostaServico) resposta).getMinuto());
+//            }
     }
+
+    public int getMensagem() {
+        return mensagem;
+    }
+
+    public void setListaSintomas(ArrayList<Integer> listaSintomas) {
+        this.listaSintomas = listaSintomas;
+    }
+    
+    
 
 }

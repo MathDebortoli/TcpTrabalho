@@ -51,7 +51,7 @@ public class Discriminador {
     }
 
     public void preencherRam() {
-        int valor1, valor2, valor3, valor4, valor5, aux = 0;
+        int valor1, valor2, valor3, valor4, valor5;
 
         valor1 = transformarBinario(entrada.get(0), entrada.get(3));
         valor2 = transformarBinario(entrada.get(5), entrada.get(7));

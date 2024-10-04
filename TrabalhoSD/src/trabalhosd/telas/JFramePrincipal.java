@@ -12,11 +12,14 @@ import trabalhosd.TcpCliente;
  * @author umestudantecristao
  */
 public class JFramePrincipal extends javax.swing.JFrame {
+
     ArrayList<Integer> listaSintomas = null;
+    TcpCliente cliente = null;
 
     public JFramePrincipal() {
         initComponents();
         jToggleButtonDiagnostico.setSelected(true);
+        cliente = new TcpCliente(listaSintomas);
     }
 
     /**
@@ -237,23 +240,26 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
         JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
-        
+
         jToggleButtonTreino.setSelected(true);
         tela.setVisible(true);
         listaSintomas = tela.retornarLista();
+        cliente.setListaSintomas(listaSintomas);
         enviarLista();
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
 
     public ArrayList<Integer> getListaSintomas() {
         return listaSintomas;
     }
-   
-    private void enviarLista(){
-        TcpCliente cliente = new TcpCliente(listaSintomas);
+
+    private void enviarLista() {
         cliente.enviar();
+        if(cliente.getMensagem()==1){
+            jTextPane1.setText("Treino Realizado com Sucesso!");
+        }
     }
-    
-     public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -280,11 +286,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run(){
+            public void run() {
                 new JFramePrincipal().setVisible(true);
             }
         });
-     }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
