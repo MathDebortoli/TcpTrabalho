@@ -12,13 +12,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  *
  * @author matheus
  */
-public class TcpServidor extends Thread {
+public class TcpServidor{
 
     private static final int DATA = 1;
     private static final int HORA = 2;
@@ -26,7 +25,6 @@ public class TcpServidor extends Thread {
     Date data;
     Calendar calendario;
     ServerSocket serverSocket = null;
-    Socket socket = null;
 
     //Discriminadores para as doencas
     Discriminador gripe;
@@ -42,8 +40,7 @@ public class TcpServidor extends Thread {
     ObjectInputStream objectInputStream;
     //Cria-se o calendario
 
-    public TcpServidor(Socket socket) {
-        this.socket = socket;
+    public TcpServidor() {
         this.gripe = new Discriminador();
         this.virose = new Discriminador();
         this.gravidez = new Discriminador();
@@ -51,72 +48,86 @@ public class TcpServidor extends Thread {
         this.inffecaoIntestino = new Discriminador();
     }
 
-    @Override
-    public void run() {
+    public void adicionarCliente(Socket socket) {
+        new Thread(() -> {
+            //Permanece prestando servico
+            try {
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                return;
+            }
 
-        //Permanece prestando servico
-        try {
-            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+            //Aguardando a recepçao da solicitacao
+            try {
+                solicitacao = (SolicitarServico) objectInputStream.readObject();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
+                return;
+            }
 
-        //Aguardando a recepçao da solicitacao
-        try {
-            solicitacao = (SolicitarServico) objectInputStream.readObject();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
-            return;
-        }
-        
-        resposta = new RespostaServico();
+            resposta = new RespostaServico();
+            ArrayList<Integer> listaSintomas = solicitacao.getListaSintomas();
 
-        ArrayList<Integer> listaSintomas = solicitacao.getListaSintomas();
-        
-        // Identifica a Doenca de acordo com o index do combobox.
-        if (null != listaSintomas.get(10)){
-            switch (listaSintomas.get(10)) {
-                case 0 -> {
-                    gripe.setEntrada(listaSintomas);
-                    gripe.preencherRam();
-                    gripe.imprimirRams();
-                }
-                case 1 -> {
-                    gravidez.setEntrada(listaSintomas);
-                    gravidez.preencherRam();
-                    gravidez.imprimirRams();
-                }
-                case 2 -> {
-                    virose.setEntrada(listaSintomas);
-                    virose.preencherRam();
-                    virose.imprimirRams();
-                }
-                case 3 -> {
-                    inffecaoIntestino.setEntrada(listaSintomas);
-                    inffecaoIntestino.preencherRam();
-                    inffecaoIntestino.imprimirRams();
-                }
-                case 4 -> {
-                    infeccaoOuvido.setEntrada(listaSintomas);
-                    infeccaoOuvido.preencherRam();
-                    infeccaoOuvido.imprimirRams();
-                }
-                default -> {
-                    System.out.println("Erro");
+            // Identifica a Doenca de acordo com o index do combobox.
+            if (null != listaSintomas.get(10)) {
+                switch (listaSintomas.get(10)) {
+                    case 0 -> {
+                        System.out.println("Gripe");
+                        gripe.setEntrada(listaSintomas);
+                        gripe.preencherRam();
+                        gripe.imprimirRams();
+                    }
+                    case 1 -> {
+                        System.out.println("Gravidez");
+                        gravidez.setEntrada(listaSintomas);
+                        gravidez.preencherRam();
+                        gravidez.imprimirRams();
+                    }
+                    case 2 -> {
+                        System.out.println("Virose");
+                        virose.setEntrada(listaSintomas);
+                        virose.preencherRam();
+                        virose.imprimirRams();
+                    }
+                    case 3 -> {
+                        System.out.println("inffecaointestinal");
+                        inffecaoIntestino.setEntrada(listaSintomas);
+                        inffecaoIntestino.preencherRam();
+                        inffecaoIntestino.imprimirRams();
+                    }
+                    case 4 -> {
+                        System.out.println("inffecaoouvido");
+                        infeccaoOuvido.setEntrada(listaSintomas);
+                        infeccaoOuvido.preencherRam();
+                        infeccaoOuvido.imprimirRams();
+                    }
+                    default -> {
+                        System.out.println("Erro");
+                    }
                 }
             }
-        }
-        System.out.println("");
-        ((RespostaServico) resposta).setCodigo(1);
 
-        //Enviar o objeto com a resposta
-        try {
-            objectOutputStream.writeObject(resposta);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            //Resposta de Sucesso 
+            ((RespostaServico) resposta).setCodigo(1);
+
+            //Enviar o objeto com a resposta
+            try {
+                objectOutputStream.writeObject(resposta);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+           
+        finally{
+            try{
+                socket.close();
+            }
+            catch(IOException e){
+                System.out.println("Erro!!");
+            }
         }
+        }).start();
     }
 }

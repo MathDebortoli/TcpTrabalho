@@ -43,9 +43,6 @@ public class TcpCliente {
         solicitacao = new SolicitarServico();
         solicitacao.setListaSintomas(listaSintomas);
         
-        System.out.println("rodolfo");
-
-
         try {
             enderecoServidor = InetAddress.getByName(nomeServidor);
         } catch (UnknownHostException e) {

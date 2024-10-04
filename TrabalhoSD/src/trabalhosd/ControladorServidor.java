@@ -19,6 +19,8 @@ public class ControladorServidor {
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
         Socket socket = null;
+        TcpServidor servidor;
+        servidor = new TcpServidor();
 
         //Criar o ponto de transporte para conexao
         try {
@@ -36,10 +38,7 @@ public class ControladorServidor {
                 System.out.println(e.getMessage());
                 return;
             }
-
-            Thread servidor;
-            servidor = new TcpServidor(socket);
-            servidor.start();
+            servidor.adicionarCliente(socket);
         }
     }
 }

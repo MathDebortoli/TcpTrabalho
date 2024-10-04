@@ -196,8 +196,6 @@ public class JDialogTreinarAlgoritmo extends javax.swing.JDialog {
 
         //Passamos o index do sintoma e setamos como 1.
         listaSintomas.set(jComboBox1.getSelectedIndex(), 1);
-
-        System.out.println(listaSintomas);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

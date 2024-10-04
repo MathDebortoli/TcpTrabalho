@@ -245,6 +245,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
         listaSintomas = tela.retornarLista();
         cliente.setListaSintomas(listaSintomas);
+       
+        //Imprimir o vetor com os sintomas
+        System.out.println(listaSintomas);
         enviarLista();
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
 
