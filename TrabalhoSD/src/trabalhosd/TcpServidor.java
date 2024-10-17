@@ -113,8 +113,6 @@ public class TcpServidor{
                     default -> {
                         System.out.println("Erro");
                     }
-                    
-                    
                 }
                 
                 System.out.println("Realizar Avalicação");

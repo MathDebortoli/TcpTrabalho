@@ -15,6 +15,8 @@ public class Avaliador {
     
     private static int totalPrevisoes = 0; 
     private static int totalPrevisoesCorretas = 0;
+    private static int totalFalsosPositivos = 0;
+    private static int totalFalsosNegativos = 0;
     
     
     private List<Discriminador> discriminadores;
@@ -105,7 +107,13 @@ public class Avaliador {
     public static void previsaoCorreta(){
         totalPrevisoesCorretas++;
     }
-    
+    public static void falsoPositivo(){
+        totalFalsosPositivos++;
+    }
+    public static void falsoNegativo(){
+        totalFalsosNegativos++;
+    }
+               
     public static double getConfiabilidade(){
         if(totalPrevisoes == 0){
             return 0;
@@ -113,5 +121,16 @@ public class Avaliador {
         return totalPrevisoesCorretas / totalPrevisoes ;
     }
     
+    public static double getPrecisao(){
+        return totalPrevisoesCorretas / totalPrevisoesCorretas + totalFalsosPositivos;
+    }
     
+    public static double getRecall(){
+        return totalPrevisoesCorretas / totalPrevisoesCorretas + totalFalsosNegativos;
+    }
+    
+    public static double getF1Score(){
+        return 2 * ((getPrecisao() * getRecall()) / (getPrecisao() + getRecall()));
+        
+    }
 }
