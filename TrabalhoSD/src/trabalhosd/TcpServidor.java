@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -32,6 +33,8 @@ public class TcpServidor{
     Discriminador virose;
     Discriminador infeccaoOuvido;
     Discriminador inffecaoIntestino;
+    
+    Avaliador avaliador;
 
     SolicitarServico solicitacao;
     Object resposta;
@@ -79,6 +82,8 @@ public class TcpServidor{
                         gripe.setEntrada(listaSintomas);
                         gripe.preencherRam();
                         gripe.imprimirRams();
+                       
+                            
                     }
                     case 1 -> {
                         System.out.println("Gravidez");
@@ -104,10 +109,20 @@ public class TcpServidor{
                         infeccaoOuvido.preencherRam();
                         infeccaoOuvido.imprimirRams();
                     }
+                   
                     default -> {
                         System.out.println("Erro");
                     }
+                    
+                    
                 }
+                
+                System.out.println("Realizar Avalicação");
+                avaliador = new Avaliador(Arrays.asList(gripe,gravidez,virose,inffecaoIntestino,infeccaoOuvido));
+                avaliador.avaliar(listaSintomas);
+                
+                Avaliador.getConfiabilidade();
+                Avaliador.previsaoCorreta();
             }
 
             //Resposta de Sucesso 

@@ -1,6 +1,8 @@
 package trabalhosd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -73,7 +75,12 @@ public class Discriminador {
         aux = ram5.get(valor5) + 1;
         ram5.set(valor5, aux);
     }
-
+    
+    
+    public List<ArrayList<Integer>> getRams(){
+        return Arrays.asList(ram1,ram2,ram3,ram4,ram5);
+    }
+    
     public void imprimirRams() {
         // Imprimindo todas as RAMs para depuração
         System.out.println("RAM1: " + ram1);
