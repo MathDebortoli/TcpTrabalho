@@ -29,7 +29,7 @@ public class TcpCliente {
     }
 
     public void enviar() {
-        String nomeServidor = "matheus-lenovo";
+        String nomeServidor = "klitz-pc";
         int operacaoSolicitada = HORA;
         Socket socket = null;
         InetAddress enderecoServidor = null;
