@@ -5,6 +5,7 @@
 package trabalhosd.telas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -14,6 +15,7 @@ import javax.swing.JList;
  */
 public class JDialogGerarDiagnostico extends javax.swing.JDialog {
 
+    ArrayList<Integer> resposta = new ArrayList<>(Collections.nCopies(11, 0));
     /**
      * Creates new form JDialogInserirDados
      */
@@ -175,20 +177,31 @@ public class JDialogGerarDiagnostico extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jListSelecionadosMouseClicked
 
+    public ArrayList<Integer> getResposta(){
+        return this.resposta;
+    }
+    
+    
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
         ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[2];
-        
+        String[] doencas = {"Febre", "Dor de cabeça", "Falta de ar", "Náusea", 
+        "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", 
+        "Falta de apetite","Diarréia"};
         for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
             listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
         }
         
-        resposta[0] = 2;
-        resposta[1] = listaSintomas;
+        resposta.set(10, -1);
         
-        System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
-                           "Sintomas: " + resposta[1] + "\n"
-                          );
+        for (int i = 0; i < listaSintomas.size(); i++){
+            for(int j = 0; j < doencas.length; j++){
+                if(listaSintomas.get(i) == doencas[j]){
+                
+                resposta.set(j, 1);
+            }
+           }
+        }
+        
         
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed

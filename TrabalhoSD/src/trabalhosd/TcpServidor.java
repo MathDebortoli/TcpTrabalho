@@ -62,6 +62,7 @@ public class TcpServidor{
             //Aguardando a recepçao da solicitacao
             try {
                 solicitacao = (SolicitarServico) objectInputStream.readObject();
+                System.out.println(solicitacao.getListaSintomas());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace(); // Isso ajudará a identificar exatamente onde o erro ocorre
@@ -74,6 +75,26 @@ public class TcpServidor{
             // Identifica a Doenca de acordo com o index do combobox.
             if (null != listaSintomas.get(10)) {
                 switch (listaSintomas.get(10)) {
+                    case -1 ->{
+                        Diagnostico d = new Diagnostico(listaSintomas);
+                        ArrayList<Discriminador> listaDoencas = new ArrayList<Discriminador>();
+                        listaDoencas.add(gripe); listaDoencas.add(virose); listaDoencas.add(gravidez);
+                        listaDoencas.add(infeccaoOuvido); listaDoencas.add(inffecaoIntestino);
+                        Discriminador doenca = d.diagnosticoFinal(listaDoencas);
+                        
+                        if(doenca == gripe){
+                            System.out.println("É gripe");
+                        }else if(doenca == virose){
+                            System.out.println("É virose");
+                        }else if(doenca == gravidez){
+                            System.out.println("É gravidez");
+                        }else if(doenca == infeccaoOuvido){
+                            System.out.println("É infecção de ouvido");
+                        }else if(doenca == inffecaoIntestino){
+                            System.out.println("É infecção de intestino");
+                        }
+                        
+                    }
                     case 0 -> {
                         System.out.println("Gripe");
                         gripe.setEntrada(listaSintomas);

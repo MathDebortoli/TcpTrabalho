@@ -5,6 +5,7 @@
 package trabalhosd.telas;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import trabalhosd.TcpCliente;
 
 /**
@@ -15,11 +16,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     ArrayList<Integer> listaSintomas = null;
     TcpCliente cliente = null;
+    DefaultListModel modelDiagnostico = null;
+    DefaultListModel modelTreino = null;
+    DefaultListModel modelAvaliacao = null;
 
     public JFramePrincipal() {
         initComponents();
         jToggleButtonDiagnostico.setSelected(true);
         cliente = new TcpCliente(listaSintomas);
+        modelDiagnostico = new DefaultListModel();
+        modelTreino = new DefaultListModel();
+        modelAvaliacao = new DefaultListModel();
     }
 
     /**
@@ -46,7 +53,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jToggleButtonTreino = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListMain = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
@@ -141,31 +148,40 @@ public class JFramePrincipal extends javax.swing.JFrame {
         buttonGroup1.add(jToggleButtonAvaliacao);
         jToggleButtonAvaliacao.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
         jToggleButtonAvaliacao.setText("Avaliações");
+        jToggleButtonAvaliacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonAvaliacaoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButtonDiagnostico);
         jToggleButtonDiagnostico.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
         jToggleButtonDiagnostico.setText("Diagnósticos");
+        jToggleButtonDiagnostico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonDiagnosticoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButtonTreino);
         jToggleButtonTreino.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
         jToggleButtonTreino.setText("Treinos");
+        jToggleButtonTreino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonTreinoActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jList1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jList1.setFont(new java.awt.Font("Fira Sans Condensed", 1, 24)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Sintomas: S0, S3, S5, S4 - Diagnóstico: D3", "Sintomas: S9, S1, S2, S8 - Diagnóstico: D5", "Sintomas: S1, S3, S2, S7 - Diagnóstico: D2" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        jListMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jListMain.setFont(new java.awt.Font("Fira Sans Condensed", 1, 24)); // NOI18N
+        jListMain.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jListMain);
 
         jTextPane1.setEditable(false);
         jTextPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextPane1.setText("Solicitação aceita com sucesso!");
         jTextPane1.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(jTextPane1);
 
@@ -236,6 +252,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JDialogGerarDiagnostico tela = new JDialogGerarDiagnostico(this, true);
         jToggleButtonDiagnostico.setSelected(true);
         tela.setVisible(true);
+        
+        modelDiagnostico.addElement(tela.getResposta().toString());
+        listaSintomas = tela.getResposta();
+        
+        
+        
+        cliente.setListaSintomas(listaSintomas);
+        enviarLista();
+        jToggleButtonDiagnosticoActionPerformed(evt);
     }//GEN-LAST:event_jButtonGerarDiagnosticoActionPerformed
 
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
@@ -249,7 +274,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
         //Imprimir o vetor com os sintomas
         System.out.println(listaSintomas);
         enviarLista();
+        jToggleButtonTreinoActionPerformed(evt);
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
+
+    private void jToggleButtonTreinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonTreinoActionPerformed
+        jListMain.setModel(modelTreino);
+    }//GEN-LAST:event_jToggleButtonTreinoActionPerformed
+
+    private void jToggleButtonAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAvaliacaoActionPerformed
+        jListMain.setModel(modelAvaliacao);
+    }//GEN-LAST:event_jToggleButtonAvaliacaoActionPerformed
+
+    private void jToggleButtonDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonDiagnosticoActionPerformed
+        jListMain.setModel(modelDiagnostico);
+    }//GEN-LAST:event_jToggleButtonDiagnosticoActionPerformed
 
     public ArrayList<Integer> getListaSintomas() {
         return listaSintomas;
@@ -258,7 +296,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void enviarLista() {
         cliente.enviar();
         if(cliente.getMensagem()==1){
-            jTextPane1.setText("Treino Realizado com Sucesso!");
+            jTextPane1.setText("Operação Realizada com Sucesso!");
+        }else{
+            jTextPane1.setText("Erro ao realizar a operação!");
         }
     }
 
@@ -304,7 +344,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListMain;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
