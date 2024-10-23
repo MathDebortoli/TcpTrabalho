@@ -5,8 +5,10 @@
 package trabalhosd.telas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import trabalhosd.TcpCliente;
 
 /**
  *
@@ -14,6 +16,7 @@ import javax.swing.JList;
  */
 public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
+    ArrayList<Integer> resposta = new ArrayList<>(Collections.nCopies(11, 0));
     /**
      * Creates new form JDialogInserirDados
      */
@@ -45,7 +48,7 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jRadioButtonCorreto = new javax.swing.JRadioButton();
         jRadioButtonErrado = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonResposta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Treinar algoritmo");
@@ -98,6 +101,11 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
 
         jTextField1.setEditable(false);
         jTextField1.setFocusable(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         buttonGroupRespostaAlgoritmo.add(jRadioButtonCorreto);
         jRadioButtonCorreto.setText("Está correto");
@@ -105,14 +113,19 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
         buttonGroupRespostaAlgoritmo.add(jRadioButtonErrado);
         jRadioButtonErrado.setText("Está errado");
 
-        jButton1.setText("Resposta");
+        jButtonResposta.setText("Resposta");
+        jButtonResposta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRespostaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonCancelar)
@@ -137,7 +150,7 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(jButtonResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,7 +168,7 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonResposta))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonCorreto)
@@ -217,39 +230,87 @@ public class JDialogAvaliarAlgoritmo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jListSelecionadosMouseClicked
 
+    public ArrayList<Integer> getResposta(){
+        return this.resposta;
+    }
+    
+    public void setDoenca(int x){
+        int msg = x;
+        if(msg == 1){
+            jTextField1.setText("Gravidez");
+        }else if(msg == 2){
+            jTextField1.setText("Virose");
+        }else if(msg == 3){
+            jTextField1.setText("Infecção Intestino");
+        }else if(msg == 4){
+            jTextField1.setText("Infecção Ouvido");
+        }else{
+            jTextField1.setText("Gripe");
+        }
+    }
+    
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        ArrayList<String> listaSintomas = new ArrayList<String>();
-        Object[] resposta = new Object[4];
-        
+       ArrayList<String> listaSintomas = new ArrayList<String>();
+        String[] doencas = {"Febre", "Dor de cabeça", "Falta de ar", "Náusea", 
+        "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", 
+        "Falta de apetite","Diarréia"};
         for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
             listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
         }
         
-        int respostaAlgoritmo = -1;
-        
         if(jRadioButtonCorreto.isSelected()){
-            respostaAlgoritmo = 1;
+            resposta.set(10, -3);   
+        }else{
+            resposta.set(10, -4);   
         }
         
-        resposta[0] = 1;
-        resposta[1] = listaSintomas;
-        resposta[2] = "Gripe";
-        resposta[3] = respostaAlgoritmo;
+        for (int i = 0; i < listaSintomas.size(); i++){
+            for(int j = 0; j < doencas.length; j++){
+                if(listaSintomas.get(i) == doencas[j]){
+                
+                resposta.set(j, 1);
+            }
+           }
+        }
         
-        System.out.println("Tipo de requisição: " + resposta[0] + "\n" +
-                           "Sintomas: " + resposta[1] + "\n" +
-                           "Diagnóstico: " + resposta[2] + "\n" +
-                           "'O algoritmo está correto?': " + resposta[3] + "\n"
-                          );
         this.dispose();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
+
+    private void jButtonRespostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRespostaActionPerformed
+        ArrayList<String> listaSintomas = new ArrayList<String>();
+        String[] doencas = {"Febre", "Dor de cabeça", "Falta de ar", "Náusea", 
+        "Dor de barriga", "Nariz entupido", "Dor de ouvido", "Fraqueza", 
+        "Falta de apetite","Diarréia"};
+        for (int i = 0; i < jListSelecionados.getModel().getSize(); i++) {
+            listaSintomas.add(jListSelecionados.getModel().getElementAt(i));
+        }
+        
+       
+        resposta.set(10, -2);   
+        
+        
+       
+        
+        for (int i = 0; i < listaSintomas.size(); i++){
+            for(int j = 0; j < doencas.length; j++){
+                if(listaSintomas.get(i) == doencas[j]){
+                
+                resposta.set(j, 1);
+            }
+           }
+        }
+    }//GEN-LAST:event_jButtonRespostaActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupRespostaAlgoritmo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
+    private javax.swing.JButton jButtonResposta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -70,11 +71,28 @@ public class TcpServidor{
             }
 
             resposta = new RespostaServico();
+            double conf = 0;
+            String doencaS = "";
             ArrayList<Integer> listaSintomas = solicitacao.getListaSintomas();
-
+            int x = 0;
             // Identifica a Doenca de acordo com o index do combobox.
             if (null != listaSintomas.get(10)) {
+                Avaliador a;
+                
                 switch (listaSintomas.get(10)) {
+                    case -4 ->{
+                        Avaliador.falsoNegativo();
+                        conf = Avaliador.getConfiabilidade();
+                    }
+                    case -3 ->{
+                        Avaliador.previsaoCorreta();
+                        conf = Avaliador.getConfiabilidade();
+                    }
+                    case -2 ->{
+                        a = new Avaliador(Arrays.asList(gripe, gravidez, virose, inffecaoIntestino, infeccaoOuvido));
+                        x = a.avaliar(listaSintomas);
+                        
+                    }
                     case -1 ->{
                         Diagnostico d = new Diagnostico(listaSintomas);
                         ArrayList<Discriminador> listaDoencas = new ArrayList<Discriminador>();
@@ -83,44 +101,44 @@ public class TcpServidor{
                         Discriminador doenca = d.diagnosticoFinal(listaDoencas);
                         
                         if(doenca == gripe){
-                            System.out.println("É gripe");
+                            doencaS = "É gripe";
                         }else if(doenca == virose){
-                            System.out.println("É virose");
+                            doencaS = "É virose";
                         }else if(doenca == gravidez){
-                            System.out.println("É gravidez");
+                            doencaS = "É gravidez";
                         }else if(doenca == infeccaoOuvido){
-                            System.out.println("É infecção de ouvido");
+                            doencaS = "É infecção de ouvido";
                         }else if(doenca == inffecaoIntestino){
-                            System.out.println("É infecção de intestino");
+                            doencaS = "É infecção de intestino";
                         }
                         
                     }
                     case 0 -> {
-                        System.out.println("Gripe");
+                        doencaS = "Gripe";
                         gripe.setEntrada(listaSintomas);
                         gripe.preencherRam();
                         gripe.imprimirRams();
                     }
                     case 1 -> {
-                        System.out.println("Gravidez");
+                        doencaS = "Gravidez";
                         gravidez.setEntrada(listaSintomas);
                         gravidez.preencherRam();
                         gravidez.imprimirRams();
                     }
                     case 2 -> {
-                        System.out.println("Virose");
+                        doencaS = "Virose";
                         virose.setEntrada(listaSintomas);
                         virose.preencherRam();
                         virose.imprimirRams();
                     }
                     case 3 -> {
-                        System.out.println("inffecaointestinal");
+                        doencaS = "inffecaointestinal";
                         inffecaoIntestino.setEntrada(listaSintomas);
                         inffecaoIntestino.preencherRam();
                         inffecaoIntestino.imprimirRams();
                     }
                     case 4 -> {
-                        System.out.println("inffecaoouvido");
+                        doencaS = "inffecaoouvido";
                         infeccaoOuvido.setEntrada(listaSintomas);
                         infeccaoOuvido.preencherRam();
                         infeccaoOuvido.imprimirRams();
@@ -132,7 +150,7 @@ public class TcpServidor{
             }
 
             //Resposta de Sucesso 
-            ((RespostaServico) resposta).setCodigo(1);
+            ((RespostaServico) resposta).setCodigo(doencaS, x, conf);
 
             //Enviar o objeto com a resposta
             try {

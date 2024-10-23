@@ -6,6 +6,7 @@ package trabalhosd.telas;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import trabalhosd.TcpCliente;
 
 /**
@@ -17,16 +18,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     ArrayList<Integer> listaSintomas = null;
     TcpCliente cliente = null;
     DefaultListModel modelDiagnostico = null;
-    DefaultListModel modelTreino = null;
-    DefaultListModel modelAvaliacao = null;
+    double progresso;
 
     public JFramePrincipal() {
         initComponents();
-        jToggleButtonDiagnostico.setSelected(true);
         cliente = new TcpCliente(listaSintomas);
         modelDiagnostico = new DefaultListModel();
-        modelTreino = new DefaultListModel();
-        modelAvaliacao = new DefaultListModel();
+        jProgressBar.setValue(0);
     }
 
     /**
@@ -38,19 +36,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonTreinarAlgoritmo = new javax.swing.JButton();
         jButtonGerarDiagnostico = new javax.swing.JButton();
         jButtonAvaliarAlgoritmo = new javax.swing.JButton();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jToggleButtonAvaliacao = new javax.swing.JToggleButton();
-        jToggleButtonDiagnostico = new javax.swing.JToggleButton();
-        jToggleButtonTreino = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListMain = new javax.swing.JList<>();
@@ -92,9 +86,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jProgressBar1.setForeground(new java.awt.Color(51, 255, 51));
-        jProgressBar1.setValue(70);
-        jProgressBar1.setStringPainted(true);
+        jProgressBar.setForeground(new java.awt.Color(51, 255, 51));
+        jProgressBar.setValue(70);
+        jProgressBar.setStringPainted(true);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Confiabilidade do algoritmo");
@@ -119,7 +113,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel2)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -136,47 +130,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Fira Sans Book", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("SAÍDAS");
-
-        buttonGroup1.add(jToggleButtonAvaliacao);
-        jToggleButtonAvaliacao.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButtonAvaliacao.setText("Avaliações");
-        jToggleButtonAvaliacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonAvaliacaoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jToggleButtonDiagnostico);
-        jToggleButtonDiagnostico.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButtonDiagnostico.setText("Diagnósticos");
-        jToggleButtonDiagnostico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonDiagnosticoActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jToggleButtonTreino);
-        jToggleButtonTreino.setFont(new java.awt.Font("Fira Sans Condensed Book", 0, 18)); // NOI18N
-        jToggleButtonTreino.setText("Treinos");
-        jToggleButtonTreino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonTreinoActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Sintomas");
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jListMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jListMain.setFont(new java.awt.Font("Fira Sans Condensed", 1, 24)); // NOI18N
+        jListMain.setFont(new java.awt.Font("Fira Sans Condensed", 1, 12)); // NOI18N
         jListMain.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListMain);
 
@@ -187,7 +154,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Fira Sans Book", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Resposta do servidor");
+        jLabel4.setText("Diagnóstico");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,12 +165,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButtonTreino, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonAvaliacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,12 +182,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButtonTreino, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButtonDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(74, 74, 74)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jLabel4)
@@ -244,50 +200,69 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jButtonAvaliarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvaliarAlgoritmoActionPerformed
         JDialogAvaliarAlgoritmo tela = new JDialogAvaliarAlgoritmo(this, true);
-        jToggleButtonAvaliacao.setSelected(true);
         tela.setVisible(true);
+        
+        listaSintomas = tela.getResposta();
+        cliente.setListaSintomas(listaSintomas);
+        atualizarModel(listaSintomas, "Avaliação");
+        enviarLista();
+        tela.setDoenca(cliente.getX());
+        System.out.println(cliente.getConf());
+        jProgressBar.setValue((int) cliente.getConf());
     }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed
 
     private void jButtonGerarDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarDiagnosticoActionPerformed
         JDialogGerarDiagnostico tela = new JDialogGerarDiagnostico(this, true);
-        jToggleButtonDiagnostico.setSelected(true);
         tela.setVisible(true);
         
-        modelDiagnostico.addElement(tela.getResposta().toString());
         listaSintomas = tela.getResposta();
-        
-        
-        
         cliente.setListaSintomas(listaSintomas);
+        atualizarModel(listaSintomas, "Diagnóstico");
         enviarLista();
-        jToggleButtonDiagnosticoActionPerformed(evt);
     }//GEN-LAST:event_jButtonGerarDiagnosticoActionPerformed
 
+    private void atualizarModel(ArrayList<Integer> elemento, String modo){
+        ArrayList<Integer> subList = new ArrayList<Integer>(elemento.subList(0, 9));
+        String listaSintomasString = "( " + modo + " )" + "[Sintomas:";
+        int n = 0;
+        
+        if(!subList.isEmpty()){
+            for(int i = 0; i<subList.size(); i++){
+                n = subList.get(i);
+                if(n == 1){
+                    switch(i){
+                       case 0: listaSintomasString = listaSintomasString + " Febre"; break;
+                       case 1: listaSintomasString = listaSintomasString + " Dor de cabeça"; break;
+                       case 2: listaSintomasString = listaSintomasString + " Falta de ar"; break;
+                       case 3: listaSintomasString = listaSintomasString + " Náusea"; break;
+                       case 4: listaSintomasString = listaSintomasString + " Dor de barriga"; break;
+                       case 5: listaSintomasString = listaSintomasString + " Nariz entupido"; break;
+                       case 6: listaSintomasString = listaSintomasString + " Dor de ouvido"; break;
+                       case 7: listaSintomasString = listaSintomasString + " Fraqueza"; break;
+                       case 8: listaSintomasString = listaSintomasString + " Falta de apetite"; break;
+                       case 9: listaSintomasString = listaSintomasString + " Diarréia"; break;
+                    }   
+                }
+            }
+            listaSintomasString = listaSintomasString + "]";
+        }
+        
+        modelDiagnostico.addElement(listaSintomasString);
+        jListMain.setModel(modelDiagnostico);
+    }
+    
     private void jButtonTreinarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTreinarAlgoritmoActionPerformed
         JDialogTreinarAlgoritmo tela = new JDialogTreinarAlgoritmo(this, true);
-
-        jToggleButtonTreino.setSelected(true);
         tela.setVisible(true);
+        
         listaSintomas = tela.retornarLista();
         cliente.setListaSintomas(listaSintomas);
-       
+       atualizarModel(listaSintomas, "Treinamento");
+        
         //Imprimir o vetor com os sintomas
         System.out.println(listaSintomas);
         enviarLista();
-        jToggleButtonTreinoActionPerformed(evt);
     }//GEN-LAST:event_jButtonTreinarAlgoritmoActionPerformed
-
-    private void jToggleButtonTreinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonTreinoActionPerformed
-        jListMain.setModel(modelTreino);
-    }//GEN-LAST:event_jToggleButtonTreinoActionPerformed
-
-    private void jToggleButtonAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonAvaliacaoActionPerformed
-        jListMain.setModel(modelAvaliacao);
-    }//GEN-LAST:event_jToggleButtonAvaliacaoActionPerformed
-
-    private void jToggleButtonDiagnosticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonDiagnosticoActionPerformed
-        jListMain.setModel(modelDiagnostico);
-    }//GEN-LAST:event_jToggleButtonDiagnosticoActionPerformed
 
     public ArrayList<Integer> getListaSintomas() {
         return listaSintomas;
@@ -295,11 +270,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void enviarLista() {
         cliente.enviar();
-        if(cliente.getMensagem()==1){
-            jTextPane1.setText("Operação Realizada com Sucesso!");
-        }else{
-            jTextPane1.setText("Erro ao realizar a operação!");
-        }
+        jTextPane1.setText(cliente.getMensagem());
     }
 
     public static void main(String args[]) {
@@ -336,7 +307,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAvaliarAlgoritmo;
     private javax.swing.JButton jButtonGerarDiagnostico;
     private javax.swing.JButton jButtonTreinarAlgoritmo;
@@ -348,12 +318,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JToggleButton jToggleButtonAvaliacao;
-    private javax.swing.JToggleButton jToggleButtonDiagnostico;
-    private javax.swing.JToggleButton jToggleButtonTreino;
     // End of variables declaration//GEN-END:variables
 }

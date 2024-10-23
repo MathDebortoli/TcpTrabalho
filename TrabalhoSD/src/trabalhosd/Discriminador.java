@@ -1,6 +1,8 @@
 package trabalhosd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -45,6 +47,10 @@ public class Discriminador {
     public int transformarBinario(int num1, int num2) {
         String juntos = "" + num1 + num2;
         return Integer.parseInt(juntos, 2); // Convertendo a String para número binário
+    }
+    
+     public List<ArrayList<Integer>> getRams(){
+        return Arrays.asList(ram1,ram2,ram3,ram4,ram5);
     }
 
     public void preencherRam() {

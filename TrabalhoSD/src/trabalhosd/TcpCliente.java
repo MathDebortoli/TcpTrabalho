@@ -18,7 +18,9 @@ import java.util.ArrayList;
  */
 public class TcpCliente {
 
-    private int mensagem;
+    private String mensagem;
+    private int x;
+    private double conf;
     ArrayList<Integer> listaSintomas;
     private static final int DATA = 1;
     private static final int HORA = 2;
@@ -91,8 +93,9 @@ public class TcpCliente {
             return;
         }
 
-        mensagem = ((RespostaServico) resposta).getCodigo();
-
+        mensagem = ((RespostaServico) resposta).getDoenca();
+        x = ((RespostaServico) resposta).getX();
+        conf = ((RespostaServico) resposta).getConf();
 //        //Apresentar resposta
 //        if (resposta instanceof RespostaServico) {
 //            if (solicitacao.getCodigo() == DATA) {
@@ -104,8 +107,16 @@ public class TcpCliente {
 //            }
     }
 
-    public int getMensagem() {
+    public String getMensagem() {
         return mensagem;
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public double getConf(){
+        return conf;
     }
 
     public void setListaSintomas(ArrayList<Integer> listaSintomas) {

@@ -12,14 +12,26 @@ import java.io.Serializable;
  */
 public class RespostaServico implements Serializable {
 
-    private int codigo;
+    private String doenca;
+    private int x;
+    private double conf;
 
-    public int getCodigo() {
-        return codigo;
+    public String getDoenca() {
+        return doenca;
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public double getConf() {
+        return conf;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCodigo(String doenca, int x, double conf) {
+        this.doenca = doenca;
+        this.x = x;
+        this.conf = conf;
     }
 
 
