@@ -72,7 +72,7 @@ public class TcpServidor{
 
             resposta = new RespostaServico();
             double conf = 0;
-            String doencaS = "";
+            String doencaS = "Erro!";
             ArrayList<Integer> listaSintomas = solicitacao.getListaSintomas();
             int x = 0;
             // Identifica a Doenca de acordo com o index do combobox.
@@ -83,15 +83,28 @@ public class TcpServidor{
                     case -4 ->{
                         Avaliador.falsoNegativo();
                         conf = Avaliador.getConfiabilidade();
+                        System.out.println("errado conf " + conf);
                     }
                     case -3 ->{
                         Avaliador.previsaoCorreta();
                         conf = Avaliador.getConfiabilidade();
+                        System.out.println("certo conf " + conf);
                     }
                     case -2 ->{
                         a = new Avaliador(Arrays.asList(gripe, gravidez, virose, inffecaoIntestino, infeccaoOuvido));
                         x = a.avaliar(listaSintomas);
                         
+                        if(x == 0){
+                            doencaS = "É gripe";
+                        }else if(x == 2){
+                            doencaS = "É virose";
+                        }else if(x == 1){
+                            doencaS = "É gravidez";
+                        }else if(x == 4){
+                            doencaS = "É infecção de ouvido";
+                        }else if(x == 3){
+                            doencaS = "É infecção de intestino";
+                        }
                     }
                     case -1 ->{
                         Diagnostico d = new Diagnostico(listaSintomas);
@@ -150,7 +163,7 @@ public class TcpServidor{
             }
 
             //Resposta de Sucesso 
-            ((RespostaServico) resposta).setCodigo(doencaS, x, conf);
+            ((RespostaServico) resposta).setCodigo(doencaS, conf);
 
             //Enviar o objeto com a resposta
             try {

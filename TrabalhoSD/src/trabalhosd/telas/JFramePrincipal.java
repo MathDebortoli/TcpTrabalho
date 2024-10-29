@@ -6,6 +6,8 @@ package trabalhosd.telas;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.ListModel;
 import trabalhosd.TcpCliente;
 
@@ -206,7 +208,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         cliente.setListaSintomas(listaSintomas);
         atualizarModel(listaSintomas, "Avaliação");
         enviarLista();
-        tela.setDoenca(cliente.getX());
+        
+        int i = JOptionPane.showConfirmDialog(this, "Este diagnóstico está correto?", "Avaliação", YES_NO_OPTION);
+        System.out.println(i);
+        if(i == 0){
+            listaSintomas.set(10, -3);   
+        }else{
+            listaSintomas.set(10, -4);
+        }
+        cliente.setListaSintomas(listaSintomas);
+        enviarLista();
         System.out.println(cliente.getConf());
         jProgressBar.setValue((int) cliente.getConf());
     }//GEN-LAST:event_jButtonAvaliarAlgoritmoActionPerformed

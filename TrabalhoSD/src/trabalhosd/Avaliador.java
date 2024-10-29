@@ -28,7 +28,7 @@ public class Avaliador {
     public int avaliar(ArrayList<Integer> entrada){
         
         int doencaResposta = 0;
-        int bleaching = 2;
+        int bleaching = 3;
         int indiceDoenca = 0;
         
         totalPrevisoes++;
@@ -118,7 +118,11 @@ public class Avaliador {
         if(totalPrevisoes == 0){
             return 0;
         }
-        return totalPrevisoesCorretas / totalPrevisoes ;
+        System.out.println("Prev "+totalPrevisoes);
+        System.out.println("PrevCorreto "+totalPrevisoesCorretas);
+        double x = (double)totalPrevisoesCorretas / (double)totalPrevisoes;        
+        System.out.println(x);
+        return  x * 100;
     }
     
     public static double getPrecisao(){
